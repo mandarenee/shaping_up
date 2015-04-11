@@ -12,7 +12,6 @@
           <em class="pull-right price"> {{product.price | currency }} </em>
         </h3>
           <img ng-src="{{product.images[0].full}}"/>
-        <p> {{product.description}} </p>
         <button ng-show="product.canPurchase"> Add to Cart </button>
         <section ng-init="tab = 1" ng-controller="PanelController as panel">
           <ul class="nav nav-pills">
@@ -26,23 +25,19 @@
               <a href ng-click="panel.selectTab(3)">Reviews</a>
             </li>
           </ul>
+          <div class="panel" ng-show="panel.isSelected(1)">
+            <h4>Description</h4>
+            <p>{{product.description}}</p>
+          </div>
+          <div class="panel" ng-show="panel.isSelected(2)">
+            <h4>Specifications</h4>
+            <blockquote>None yet</blockquote>
+          </div>
+          <div class="panel" ng-show="panel.isSelected(3)">
+            <h4>Reviews</h4>
+            <blockquote>None yet</blockquote>
+          </div>
         </section>
-
-
-        <div class="panel" ng-show="panel.isSelected(1)">
-          <h4>Description</h4>
-          <p>{{product.description}}</p>
-        </div>
-        <div class="panel" ng-show="panel.isSelected(2)">
-          <h4>Specifications</h4>
-          <blockquote>None yet</blockquote>
-        </div>
-        <div class="panel" ng-show="panel.isSelected(3)">
-          <h4>Reviews</h4>
-          <blockquote>None yet</blockquote>
-        </div>
-
-
       </li>
     </ul>
     {{store.product.name}}
