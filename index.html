@@ -2,16 +2,49 @@
 <html ng-app='store'>
   <head>
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="app.css" />
   </head>
   <body ng-controller="StoreController as store">
-    <div ng-hide="store.product.soldOut">
-      <div ng-repeat="product in store.products">
-        <h1> {{product.name}} </h1>
-        <h2> ${{product.price}} </h2>
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="product in store.products">
+        <h3>
+          {{product.name}}
+          <em class="pull-right price"> {{product.price | currency }} </em>
+        </h3>
+          <img ng-src="{{product.images[0].full}}"/>
         <p> {{product.description}} </p>
         <button ng-show="product.canPurchase"> Add to Cart </button>
-      </div>
-    </div>
+        <section ng-init="tab = 1" ng-controller="PanelController as panel">
+          <ul class="nav nav-pills">
+            <li ng-class="{ active: panel.isSelected(1) }">
+              <a href ng-click="panel.selectTab(1)">Description</a>
+            </li>
+            <li ng-class="{ active: panel.isSelected(2) }">
+              <a href ng-click="panel.selectTab(2)">Specifications</a>
+            </li>
+            <li ng-class="{ active: panel.isSelected(3) }">
+              <a href ng-click="panel.selectTab(3)">Reviews</a>
+            </li>
+          </ul>
+        </section>
+
+
+        <div class="panel" ng-show="panel.isSelected(1)">
+          <h4>Description</h4>
+          <p>{{product.description}}</p>
+        </div>
+        <div class="panel" ng-show="panel.isSelected(2)">
+          <h4>Specifications</h4>
+          <blockquote>None yet</blockquote>
+        </div>
+        <div class="panel" ng-show="panel.isSelected(3)">
+          <h4>Reviews</h4>
+          <blockquote>None yet</blockquote>
+        </div>
+
+
+      </li>
+    </ul>
     {{store.product.name}}
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
