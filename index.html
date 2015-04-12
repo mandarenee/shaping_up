@@ -10,11 +10,7 @@
         <h3 ng-include="'product-title.html'" class="ng-scope">
           <button class="pull-right price" ng-show="product.canPurchase"> Add to Cart </button>
         </h3>
-          <img ng-src="{{product.images[0].full}}"/>
-<<<<<<< HEAD
-=======
-        <button ng-show="product.canPurchase"> Add to Cart </button>
->>>>>>> abb60eca644bfacbd3d756505a70f7d196cc5881
+        <img ng-src="{{product.images[0].full}}"/>
         <section ng-init="tab = 1" ng-controller="PanelController as panel">
           <ul class="nav nav-pills">
             <li ng-class="{ active: panel.isSelected(1) }">
